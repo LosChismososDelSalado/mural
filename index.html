@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Mural Interactivo 1971–2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- PORTRAIT LOCK -->
+  <div id="portrait-lock">
+    <div id="rotate-icon" onclick="tryRotate()">📱↺</div>
+    <p>Gira tu dispositivo</p>
+    <small>para una mejor experiencia</small>
+  </div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div id="balon-loader-wrap">
+      <img id="balon-loader-img" src="assets/centro-balon-loader.webp" alt="cargando">
+    </div>
+    <div class="load-bars">
+      <div class="bar-track"><div class="bar-fill-top" id="bar-top"></div></div>
+      <div class="bar-track"><div class="bar-fill-bot" id="bar-bot"></div></div>
+    </div>
+    <div id="load-text">Cargando…</div>
+  </div>
+
+  <!-- MURAL -->
+  <div id="mural-container">
+
+    <!-- FONDO BASE -->
+    <img src="assets/mural-fondo-base.webp" class="layer">
+
+    <!-- PÚBLICO — efecto ola -->
+    <img src="assets/p1971-publico-2.webp" class="layer wave-layer-2">
+    <img src="assets/p1971-publico-1.webp" class="layer wave-layer-1">
+
+    <!-- PASADO -->
+    <img src="assets/p1971-texto-historia.webp" class="layer glow-simple" id="glow-historia">
+    <img src="assets/p1971-letrero-azteca.webp"  class="layer glow-double" id="glow-azteca">
+    <img src="assets/p1971-jugadoras.webp"       class="layer glow-double" id="glow-jugadoras">
+    <img src="assets/p1971-creditos.webp"        class="layer" id="img-creditos-btn">
+
+    <!-- GRIETAS -->
+    <img src="assets/centro-grieta-negra.webp" class="layer" id="grieta-negra">
+    <img src="assets/centro-grieta-verde.webp" class="layer" id="grieta-verde">
+
+    <!-- PRESENTE -->
+    <img src="assets/f2026-futbolista.webp"     class="layer glow-simple" id="glow-futbolista">
+    <img src="assets/f2026-maestra.webp"        class="layer glow-simple" id="glow-maestra">
+    <img src="assets/f2026-doctora.webp"        class="layer glow-simple" id="glow-doctora">
+    <img src="assets/f2026-bombera.webp"        class="layer glow-simple" id="glow-bombera">
+    <img src="assets/f2026-ingeniera.webp"      class="layer glow-simple" id="glow-ingeniera">
+    <img src="assets/f2026-repartidora.webp"    class="layer glow-simple" id="glow-repartidora">
+    <img src="assets/f2026-texto-nosotras.webp" class="layer glow-simple" id="glow-nosotras">
+    <img src="assets/nina-base.webp"            class="layer glow-simple" id="glow-nina">
+
+    <!-- BALÓN -->
+    <img src="assets/centro-balon-loader.webp" id="balon-loader">
+
+    <!-- ZONAS CLICKEABLES -->
+    <div class="zona" id="zona-historia"    data-target="glow-historia"   style="top:0%;   left:0%;   width:16%; height:20%;"></div>
+    <div class="zona" id="zona-azteca"      data-target="glow-azteca"     style="top:0%;   left:18%;  width:30%; height:21%;"></div>
+    <div class="zona" id="zona-jugadoras"   data-target="glow-jugadoras"  style="top:25%;  left:0%;   width:30%; height:45%;"></div>
+    <div class="zona" id="zona-creditos"    data-target="img-creditos-btn"style="top:80%;  left:0%;   width:8%;  height:20%;"></div>
+    <div class="zona" id="zona-futbolista"  data-target="glow-futbolista" style="top:15%;  left:50%;  width:14%; height:30%;"></div>
+    <div class="zona" id="zona-doctora"     data-target="glow-doctora"    style="top:0%;   left:65%;  width:11%; height:35%;"></div>
+    <div class="zona" id="zona-ingeniera"   data-target="glow-ingeniera"  style="top:0%;   left:76%;  width:11%; height:35%;"></div>
+    <div class="zona" id="zona-maestra"     data-target="glow-maestra"    style="top:35%;  left:60%;  width:9%;  height:50%;"></div>
+    <div class="zona" id="zona-bombera"     data-target="glow-bombera"    style="top:35%;  left:70%;  width:11%; height:50%;"></div>
+    <div class="zona" id="zona-repartidora" data-target="glow-repartidora"style="top:30%;  left:83%;  width:8%;  height:50%;"></div>
+    <div class="zona" id="zona-nosotras"    data-target="glow-nosotras"   style="top:0%;   left:90%;  width:10%; height:22%;"></div>
+    <div class="zona" id="zona-nina"        data-target="glow-nina"       style="top:42%;  left:92%;  width:8%;  height:60%;"></div>
+
+  </div><!-- /mural-container -->
+
+  <audio id="audio-ambiente" src="assets/audios/ambiente.mp3" loop preload="auto"></audio>
+  <script src="main.js"></script>
+</body>
+</html>
