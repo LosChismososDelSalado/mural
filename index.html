@@ -6,6 +6,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Mural Interactivo 1971–2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@700&family=Montserrat:wght@900&family=Playfair+Display:ital,wght@1,900&family=Permanent+Marker&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +21,7 @@
   <!-- LOADER -->
   <div id="loader">
     <div id="balon-loader-wrap">
-      <img id="balon-loader-img" src="assets/centro-balon-loader.webp" alt="cargando">
+      <img id="balon-loader-img" src="assets/centro-balon-loader.png" alt="cargando">
     </div>
     <div class="load-bars">
       <div class="bar-track"><div class="bar-fill-top" id="bar-top"></div></div>
@@ -29,38 +30,47 @@
     <div id="load-text">Cargando…</div>
   </div>
 
+  <!-- INTRO OVERLAY -->
+  <div id="intro-overlay">
+    <div id="intro-subtitulo">Activa el mural tocando el balón</div>
+    <div id="intro-titulo">MUNDIAL SOCIAL 2026</div>
+    <div id="zona-balon-intro"></div>
+  </div>
+
   <!-- MURAL -->
   <div id="mural-container">
+
+    <div id="titulo-mural">"Del Olvido a la Historia 1971–2026"</div>
 
     <!-- FONDO BASE -->
     <img src="assets/mural-fondo-base.webp" class="layer">
 
     <!-- PÚBLICO — efecto ola -->
-    <img src="assets/p1971-publico-2.webp" class="layer wave-layer-2">
-    <img src="assets/p1971-publico-1.webp" class="layer wave-layer-1">
+    <img src="assets/p1971-publico-2.png" class="layer wave-layer-2">
+    <img src="assets/p1971-publico-1.png" class="layer wave-layer-1">
 
     <!-- PASADO -->
-    <img src="assets/p1971-texto-historia.webp" class="layer glow-simple" id="glow-historia">
-    <img src="assets/p1971-letrero-azteca.webp"  class="layer glow-double" id="glow-azteca">
-    <img src="assets/p1971-jugadoras.webp"       class="layer glow-double" id="glow-jugadoras">
-    <img src="assets/p1971-creditos.webp"        class="layer" id="img-creditos-btn">
+    <img src="assets/p1971-texto-historia.png" class="layer glow-simple" id="glow-historia">
+    <img src="assets/p1971-letrero-azteca.png"  class="layer glow-double" id="glow-azteca">
+    <img src="assets/p1971-jugadoras.png"       class="layer personaje glow-double" id="glow-jugadoras">
+    <img src="assets/p1971-creditos.png"        class="layer personaje" id="img-creditos-btn">
 
     <!-- GRIETAS -->
-    <img src="assets/centro-grieta-negra.webp" class="layer" id="grieta-negra">
-    <img src="assets/centro-grieta-verde.webp" class="layer" id="grieta-verde">
+    <img src="assets/centro-grieta-negra.png" class="layer" id="grieta-negra">
+    <img src="assets/centro-grieta-verde.png" class="layer" id="grieta-verde">
 
     <!-- PRESENTE -->
-    <img src="assets/f2026-futbolista.webp"     class="layer glow-simple" id="glow-futbolista">
-    <img src="assets/f2026-maestra.webp"        class="layer glow-simple" id="glow-maestra">
-    <img src="assets/f2026-doctora.webp"        class="layer glow-simple" id="glow-doctora">
-    <img src="assets/f2026-bombera.webp"        class="layer glow-simple" id="glow-bombera">
-    <img src="assets/f2026-ingeniera.webp"      class="layer glow-simple" id="glow-ingeniera">
-    <img src="assets/f2026-repartidora.webp"    class="layer glow-simple" id="glow-repartidora">
-    <img src="assets/f2026-texto-nosotras.webp" class="layer glow-simple" id="glow-nosotras">
-    <img src="assets/nina-base.webp"            class="layer glow-simple" id="glow-nina">
+    <img src="assets/f2026-ingeniera.png"      class="layer personaje glow-simple" id="glow-ingeniera">
+    <img src="assets/f2026-futbolista.png"     class="layer personaje glow-simple" id="glow-futbolista">
+    <img src="assets/f2026-doctora.png"        class="layer personaje glow-simple" id="glow-doctora">
+    <img src="assets/f2026-repartidora.png"    class="layer personaje glow-simple" id="glow-repartidora">
+    <img src="assets/f2026-bombera.png"        class="layer personaje glow-simple" id="glow-bombera">
+    <img src="assets/f2026-maestra.png"        class="layer personaje glow-simple" id="glow-maestra">
+    <img src="assets/f2026-texto-nosotras.png" class="layer glow-simple" id="glow-nosotras">
+    <img src="assets/f2026-nina-base.png"       class="layer personaje glow-simple" id="glow-nina">
 
     <!-- BALÓN -->
-    <img src="assets/centro-balon-loader.webp" id="balon-loader">
+    <img src="assets/centro-balon-loader.png" id="balon-loader">
 
     <!-- ZONAS CLICKEABLES -->
     <div class="zona" id="zona-historia"    data-target="glow-historia"   style="top:0%;   left:0%;   width:16%; height:20%;"></div>
@@ -76,9 +86,64 @@
     <div class="zona" id="zona-nosotras"    data-target="glow-nosotras"   style="top:0%;   left:90%;  width:10%; height:22%;"></div>
     <div class="zona" id="zona-nina"        data-target="glow-nina"       style="top:42%;  left:92%;  width:8%;  height:60%;"></div>
 
+    <!-- MODO NINA -->
+    <div id="modal-nina" style="display:none; position:absolute; inset:0; z-index:400;">
+
+      <!-- 1. VFX — balones y nieve -->
+      <div id="nina-vfx" style="position:absolute; inset:0; z-index:153; pointer-events:none;"></div>
+
+      <!-- 2. Niña actual -->
+      <img id="nina-img" src="assets/nina-1.png"
+           style="position:absolute; inset:0; width:100%; height:100%; object-fit:contain; z-index:158; position:relative;">
+
+      <!-- Navegación lateral izquierda: atrás · contador · siguiente -->
+      <div style="position:absolute; left:1%; top:50%; transform:translateY(-50%);
+        display:flex; flex-direction:column; align-items:center; gap:4px; z-index:401;">
+
+        <button id="nina-prev"
+          style="background:#cc0022; border:none;
+          color:#fff; width:clamp(28px,4vw,44px); height:clamp(28px,4vw,44px);
+          border-radius:50%; font-size:clamp(14px,2vw,22px);
+          cursor:pointer; box-shadow:0 0 8px rgba(200,0,30,0.7);">◀</button>
+
+        <div id="nina-contador"
+          style="color:#fff; font-size:clamp(10px,1.2vw,14px);
+          text-shadow:0 0 6px #000; letter-spacing:1px; text-align:center;
+          background:rgba(0,0,0,0.5); border-radius:8px; padding:2px 5px;">1 / 8</div>
+
+        <button id="nina-next"
+          style="background:#1a8c3a; border:none;
+          color:#fff; width:clamp(28px,4vw,44px); height:clamp(28px,4vw,44px);
+          border-radius:50%; font-size:clamp(14px,2vw,22px);
+          cursor:pointer; box-shadow:0 0 8px rgba(0,160,50,0.7);">▶</button>
+
+      </div>
+
+      <!-- 4. Botón cerrar -->
+      <button id="btn-cerrar-nina"
+        style="position:absolute; top:2%; right:2%;
+        background:#ff0044; border:none; color:#fff;
+        width:clamp(28px,4vw,44px); height:clamp(28px,4vw,44px);
+        border-radius:50%; font-size:clamp(14px,2vw,22px);
+        cursor:pointer; z-index:401;
+        box-shadow:0 0 10px rgba(255,0,68,0.8);">✕</button>
+
+    </div>
+
+    <!-- MODAL CREDITOS -->
+    <div id="modal-creditos" style="display:none; position:absolute; inset:0; z-index:300; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
+      <img src="assets/p1971-creditos-1.webp" style="max-width:90%; max-height:90%; object-fit:contain;
+        filter: brightness(1.25) drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(255,255,255,0.6)) drop-shadow(0 0 28px rgba(255,255,255,0.25));">
+      <button id="btn-cerrar-creditos" style="position:absolute; top:2%; right:2%; background:#ff0044; border:none; color:#fff; width:clamp(28px,4vw,44px); height:clamp(28px,4vw,44px); border-radius:50%; font-size:clamp(14px,2vw,22px); cursor:pointer; z-index:301; box-shadow:0 0 10px rgba(255,0,68,0.8);">✕</button>
+    </div>
+
+    <div id="galaxia-overlay" style="display:none; opacity:0; position:absolute; inset:0; z-index:119; background:rgba(0,0,0,0.91); transition:opacity 0.5s ease;"></div>
+    <div id="frases-container" style="position:absolute; inset:0; z-index:123; pointer-events:none;"></div>
+    <button id="cerrar-galaxia" style="display:none; position:absolute; top:2%; right:2%; background:#ff0044; border:none; color:#fff; width:clamp(28px,4vw,44px); height:clamp(28px,4vw,44px); border-radius:50%; font-size:clamp(14px,2vw,22px); cursor:pointer; z-index:135; box-shadow:0 0 10px rgba(255,0,68,0.8); align-items:center; justify-content:center;">✕</button>
+
   </div><!-- /mural-container -->
 
-  <audio id="audio-ambiente" src="assets/audios/ambiente.mp3" loop preload="auto"></audio>
+  <audio id="audio-ambiente" src="assets/ambiente.mp3" loop preload="auto"></audio>
   <script src="main.js"></script>
 </body>
 </html>
