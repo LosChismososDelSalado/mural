@@ -4320,6 +4320,25 @@ function abrirVideoModal(src, nombre) {
   document.body.appendChild(modal);
   modal._video = video;
 
+  // Glow pulsante en la nina-base mientras corre el video
+  if (!document.getElementById('vid-glow-kf')) {
+    const s = document.createElement('style');
+    s.id = 'vid-glow-kf';
+    s.textContent = `@keyframes vidGlowNina{0%,100%{filter:brightness(1.1) drop-shadow(0 0 6px #fff) drop-shadow(0 0 14px #fff);} 50%{filter:brightness(1.4) drop-shadow(0 0 14px #fff) drop-shadow(0 0 28px #fff);}}`;
+    document.head.appendChild(s);
+  }
+  const glowNinaEl = document.getElementById('glow-nina');
+  if (glowNinaEl) {
+    const ninaRect = glowNinaEl.getBoundingClientRect();
+    const clon = glowNinaEl.cloneNode(true);
+    clon.id = 'glow-nina-vid-clon';
+    clon.style.cssText = `position:fixed;left:${ninaRect.left}px;top:${ninaRect.top}px;
+      width:${ninaRect.width}px;height:${ninaRect.height}px;
+      z-index:650;pointer-events:none;object-fit:contain;
+      animation:vidGlowNina 1.2s ease-in-out infinite;`;
+    document.body.appendChild(clon);
+  }
+
   // Reposicionar si la ventana cambia de tamaño
   function onResize() {
     const r = muralEl ? muralEl.getBoundingClientRect() : { left:0, top:0, width:window.innerWidth, height:window.innerHeight };
@@ -4341,6 +4360,7 @@ function cerrarVideoModal() {
   const v = modal._video;
   if (v) { v.pause(); v.src = ''; }
   if (modal._onResize) window.removeEventListener('resize', modal._onResize);
+  document.getElementById('glow-nina-vid-clon')?.remove();
   modal.remove();
   audioIniciado = true;
   ambAudio.currentTime = 0;
