@@ -2129,7 +2129,7 @@ function efectoArquitecta(vfx) {
       <div class="ing-mid">
         <!-- Izquierda: muñeco -->
         <div class="ing-left">
-          <svg id="ig-hangman" width="144" height="189" viewBox="0 0 150 185" style="transform:translateX(15vw);flex-shrink:0;">
+          <svg id="ig-hangman" width="144" height="189" viewBox="0 0 150 185" style="transform:translateX(5vw);flex-shrink:0;">
             <line x1="20" y1="175" x2="100" y2="175" stroke="rgba(255,255,255,.7)" stroke-width="4"/>
             <line x1="40" y1="175" x2="40"  y2="15"  stroke="rgba(255,255,255,.7)" stroke-width="4"/>
             <line x1="40" y1="15"  x2="100" y2="15"  stroke="rgba(255,255,255,.7)" stroke-width="4"/>
