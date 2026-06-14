@@ -4327,12 +4327,22 @@ function abrirVideoModal(src, nombre) {
     s.textContent = `@keyframes vidGlowNina{0%,100%{filter:brightness(1.1) drop-shadow(0 0 6px #fff) drop-shadow(0 0 14px #fff);} 50%{filter:brightness(1.4) drop-shadow(0 0 14px #fff) drop-shadow(0 0 28px #fff);}}`;
     document.head.appendChild(s);
   }
+  const NINA_POR_VIDEO = {
+    'futbolista' : 'assets/nina-1.png',
+    'bombera'    : 'assets/nina-3.png',
+    'ingeniera'  : 'assets/nina-4.png',
+    'maestra'    : 'assets/nina-6.png',
+    'doctora'    : 'assets/nina-7.png',
+    'repartidora': 'assets/nina-8.png',
+  };
+  const ninaSrc = NINA_POR_VIDEO[nombre];
   const glowNinaEl = document.getElementById('glow-nina');
-  if (glowNinaEl) {
+  if (ninaSrc && glowNinaEl) {
     const ninaRect = glowNinaEl.getBoundingClientRect();
-    const clon = glowNinaEl.cloneNode(true);
-    clon.id = 'glow-nina-vid-clon';
-    clon.style.cssText = `position:fixed;left:${ninaRect.left}px;top:${ninaRect.top}px;
+    const clon = document.createElement('img');
+    clon.id  = 'glow-nina-vid-clon';
+    clon.src = ninaSrc;
+    clon.style.cssText = `position:fixed;left:${ninaRect.left - 20}px;top:${ninaRect.top}px;
       width:${ninaRect.width}px;height:${ninaRect.height}px;
       z-index:650;pointer-events:none;object-fit:contain;
       animation:vidGlowNina 1.2s ease-in-out infinite;`;
