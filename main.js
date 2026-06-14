@@ -1702,6 +1702,15 @@ function efectoBombera(vfx) {
 
     modal.appendChild(wrap);
     ajustarWrap();
+
+    // Título superior
+    const titulo = document.createElement('div');
+    titulo.id = 'bom-titulo';
+    titulo.textContent = 'Lámpara de Lava';
+    titulo.style.cssText = 'position:absolute;top:3%;left:0;width:100%;text-align:center;z-index:170;pointer-events:none;' +
+        'font-family:"Bebas Neue",sans-serif;font-size:clamp(.9rem,3vw,1.4rem);letter-spacing:3px;text-transform:uppercase;color:#fff;' +
+        'text-shadow:0 0 10px rgba(255,100,0,.9),0 0 24px rgba(255,60,0,.6);';
+    modal.appendChild(titulo);
     window.addEventListener('resize', ajustarWrap);
 
     // ── ESTILOS ────────────────────────────────────────────────────
@@ -2005,6 +2014,7 @@ function efectoBombera(vfx) {
             window.removeEventListener('resize', ajustarWrap);
             wrap.remove();
             styleEl.remove();
+            document.getElementById('bom-titulo')?.remove();
             if (elBombera) { elBombera.style.zIndex = ''; elBombera.style.position = ''; if (_parentBombera) _parentBombera.insertBefore(elBombera, _nextBombera); }
             if (elNina)    { elNina.style.zIndex = ''; elNina.style.position = ''; }
         }
