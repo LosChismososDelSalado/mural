@@ -3589,6 +3589,8 @@ function efectoPaqueteria(vfx) {
   border-color:#e74c3c;box-shadow:0 0 7px rgba(231,76,60,.6);}
 .pk-card.revealed .pk-front{background:#2a2a3e;
   border-color:rgba(255,200,50,.6);}
+.pk-card.wrong .pk-front{border-color:#e74c3c!important;box-shadow:0 0 10px rgba(231,76,60,.9)!important;animation:pkShake .4s ease;}
+@keyframes pkShake{0%,100%{transform:rotateY(180deg) translateX(0);}20%{transform:rotateY(180deg) translateX(-5px);}40%{transform:rotateY(180deg) translateX(5px);}60%{transform:rotateY(180deg) translateX(-4px);}80%{transform:rotateY(180deg) translateX(4px);}}
 .pk-emoji{font-size:clamp(.75rem,2.2vw,1.25rem);line-height:1;}
 .pk-name{font-size:clamp(.28rem,.9vw,.48rem);color:rgba(255,255,255,.8);
   font-weight:700;margin-top:1px;text-align:center;line-height:1.1;padding:0 1px;}
@@ -3829,9 +3831,11 @@ function efectoPaqueteria(vfx) {
                 } else {
                     // No coinciden → voltear de regreso
                     sfxWrong();
+                    a.el.classList.add('wrong');
+                    b.el.classList.add('wrong');
                     setTimeout(()=>{
-                        a.el.classList.remove('flipped');
-                        b.el.classList.remove('flipped');
+                        a.el.classList.remove('flipped','wrong');
+                        b.el.classList.remove('flipped','wrong');
                         flipped=[]; canFlip=true;
                     }, 800);
                 }
